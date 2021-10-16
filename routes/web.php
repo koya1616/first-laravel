@@ -18,11 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/archives/', function() {
-    return '記事一覧';
+    return view('archives.index');
 });
 
 Route::get('/archives/{category}/', function($category) {
-    return $category . 'の一覧';
+    return view('archives.category', ['category'=>$category]);
 });
 
 Route::post('/join/', function() {
@@ -34,7 +34,12 @@ Route::get('/join/', function() {
     return redirect()->to('/');
 });
 
+
+// https://qiita.com/tamakiiii/items/e71040173fa0a1fcad83：コントローラー設定
+Route::get('/sum/{x}/{y}', 'App\Http\Controllers\MathController@sum');
+
+Route::get('/entries/', 'App\Http\Controllers\EntriesController@index');
+
 Route::get('/{id}/', function($id) {
     return $id . 'のページ';
 });
-
